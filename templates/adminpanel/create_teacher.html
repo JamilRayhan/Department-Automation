@@ -1,0 +1,16 @@
+{% extends 'navbar.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}{{title}}{% endblock  %}
+
+{% block css_block %}
+
+{% endblock  %}
+
+{% block body_block %}
+<h2>Create new teacher account</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ teacher_form.as_p }}
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+{% endblock %}

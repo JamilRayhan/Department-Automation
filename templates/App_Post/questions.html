@@ -9,34 +9,16 @@
 {% endblock  %}
 
 {% block body_block %}
-    
-<div class="row">
-    {% for post in Posts.objects.all %}
-        <div>
-            <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img src="/media/{{post.author.user_profile.profile_pic}}" width= '40px' height="40px" class="rounded-circle">{{post.author.username}}</a>
-            <br>
-        </div>
-      <div class="crop">
-        <p>{{post.question}}</p>
-        <h6>{{post.upload_date}}</h6>
-      </div>
-      <br>
+    {% for post in posts %}
+    <div>
+      {% if post.author.user_profile.profile_pic %}
+        <img src="/media/{{post.author.user_profile.profile_pic}}" width= '40px' height="40px">
+      {% else %}
+        <img src="/media/default.png" width= '40px' height="40px">
+      {% endif %}
+      <a href="{% url 'Login_App:user' username=post.author%}">{{post.author}} </a> <br>
+      {{post.question}} <br>
+    </div>
       
     {% endfor %}
-</div>
-<h1>Question page</h1>
-<div class="row">
-  {% for post in user.post.all %}
-      <div>
-          <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img src="/media/{{user.user_profile.profile_pic}}" width= '40px' height="40px" class="rounded-circle">{{user.username}}</a>
-          <br>
-      </div>
-    <div class="crop">
-      <p>{{post.question}}</p>
-      <h6>Uploaded on: {{post.upload_date}} &nbsp;&nbsp;&nbsp; Last Update: {{post.update_date}}</h6>
-    </div>
-    <br>
-  {% endfor %}
-</div>
-<br><br>
 {% endblock  %} 
