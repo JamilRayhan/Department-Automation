@@ -3,10 +3,72 @@
 {% block title_block %}{{title}}{% endblock  %}
 
 {% block css_block %}
-
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    table td, table th {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+    table th {
+        background-color: #f0f0f0;
+    }
+</style>
 {% endblock  %}
 
 {% block body_block %}
-<h1>Registration successful!</h1>
-  <p>Thank you for registering for the exam.</p>
+<h1>Exam Registration Form</h1>
+<table>
+    <tr>
+        <th>Name:</th>
+        <td>{{ reg_form.cleaned_data.name }}</td>
+    </tr>
+    <tr>
+        <th>Email:</th>
+        <td>{{ reg_form.cleaned_data.email }}</td>
+    </tr>
+    <tr>
+        <th>Exam Type:</th>
+        <td>{{ reg_form.cleaned_data.exam_type }}</td>
+    </tr>
+    <tr>
+        <th>Registration Number:</th>
+        <td>{{ reg_form.cleaned_data.registration_number }}</td>
+    </tr>
+    <tr>
+        <th>Exam Date:</th>
+        <td>{{ reg_form.cleaned_data.exam_date }}</td>
+    </tr>
+</table>
+    <p>Student ID: {{ reg_form.student_id.value }}</p>
+    <p>Year: {{ reg_form.year.value }}</p>
+    <p>Semester: {{ reg_form.semister.value }}</p>
+    <p>Hall Name: {{ reg_form.hall_name.value }}</p>
+    <p>Exam Name: {{ reg_form.exam_name.value }}</p>
+    <p>Department Name: {{ reg_form.department_name.value }}</p>
+    <p>Academic Year: {{ reg_form.academic_year.value }}</p>
+    <p>Exam Hall: {{ reg_form.exam_hall.value }}</p>
+    <p>Father Name: {{ reg_form.father_name.value }}</p>
+    <p>Mother Name: {{ reg_form.mother_name.value }}</p>
+    <p>Present Address: {{ reg_form.present_address.value }}</p>
+    <p>Permanent Address: {{ reg_form.permanent_address.value }}</p>
+    <p>Nationality: {{ reg_form.nationality.value }}</p>
+    <p>Date of Birth: {{ reg_form.date_of_birth.value }}</p>
+
+
 {% endblock %}
