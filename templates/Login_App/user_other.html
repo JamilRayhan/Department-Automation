@@ -57,6 +57,22 @@
           <div class="crop">
             <p>{{post.question}}</p>
             <h6>{{post.upload_date}}</h6>
+            <ul>
+                {% for answer in post.comments.all %}
+                    <li>
+                        <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content }}
+                        <br>
+                        Answered at: {{ answer.created_at }}
+                        <br>
+                        <form method="POST" action="{% url 'App_Post:like_answer' answer.id %}">
+                            {% csrf_token %}
+                            Likes: {{ answer.likes.count }}
+                        </form>
+                    </li>
+                {% empty %}
+                    <li>Not Answered yet.</li>
+                {% endfor %}
+            </ul>
           </div>
           <br>
         {% endfor %}
