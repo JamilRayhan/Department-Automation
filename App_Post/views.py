@@ -18,29 +18,33 @@ def home(request):
 
 
 @login_required
-@login_required
 def questions(request):
     posts = Posts.objects.all()
-    return render(request, 'App_Post/question_list.html', context={'title': 'Frequently Asked Question', 'posts': posts})
+    for post in posts:
+        answers = post.comments.annotate(num_likes=Count('likes')).order_by('-num_likes')
+        post.comments.set(answers)
+
+    liked_answers = Like.objects.filter(user=request.user).values_list('answer', flat=True)
+    context = {
+        'title': 'Frequently Asked Question',
+        'posts': posts,
+        'liked_answers': liked_answers,
+    }
+
+    return render(request, 'App_Post/question_list.html', context=context)
 
 
 @login_required
 def add_ans(request, post_id):
     if request.method == 'POST':
-        # Retrieve the post object based on the post_id
         post = Posts.objects.get(pk=post_id)
-        author = request.user  # Get the logged-in user as the author
-        # Get the comment content from the form submission
+        author = request.user 
         content = request.POST['content']
 
-        # Create a new Comment object and save it to the database
         ans = Answer(post=post, author=author, content=content)
         ans.save()
-
-        # Redirect to the questions page after submitting the comment
         return redirect('App_Post:questions')
 
-    # If the request method is GET, render the form to add a comment
     return render(request, 'App_Post/question_list.html')
 
 
@@ -53,10 +57,9 @@ def like_answer(request, answer_id):
         liked_answers = Like.objects.filter(answer=answer, user=user)
 
         if liked_answers.exists():
-            # User has already liked the answer, do not allow another like
+
             liked_answers.delete()
         else:
-            # User has not liked the answer, add the like
             like = Like(answer=answer, user=user)
             like.save()
 

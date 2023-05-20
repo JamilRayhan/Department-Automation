@@ -5,6 +5,12 @@
 {% block css_block %}
 <style>
     /* CSS styles for the comment section */
+    .like-button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 0;
+    }
 </style>
 {% endblock %}
 
@@ -32,20 +38,21 @@
                         <br>
                         Answered at: {{ answer.created_at }}
                         <br>
-                        Likes: {{ answer.likes.count }}
                         
                         <!-- Like button with Font Awesome icons -->
                         <form method="POST" action="{% url 'App_Post:like_answer' answer.id %}">
                             {% csrf_token %}
-                            {% if request.user in answer.likes.all %}
+                            {% if answer.id in liked_answers %}
                                 <button type="submit" class="like-button liked">
-                                    <i class="fa-solid fa-thumbs-up fa-beat fa-sm"></i>
+                                  <i class="fas fa-heart fa-2xl"></i>
                                 </button>
                             {% else %}
                                 <button type="submit" class="like-button">
-                                    <i class="fa-thin fa-thumbs-up fa-beat fa-sm"></i>
+                                  <i class="far fa-heart fa-2xl"></i>
                                 </button>
                             {% endif %}
+                            <br>
+                            Likes: {{ answer.likes.count }}
                         </form>
                     </li>
                 {% empty %}
