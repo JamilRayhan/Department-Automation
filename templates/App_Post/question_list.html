@@ -1,0 +1,66 @@
+{% extends 'navbar.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}{{ title }}{% endblock %}
+
+{% block css_block %}
+<style>
+    /* CSS styles for the comment section */
+</style>
+{% endblock %}
+
+{% block body_block %}
+    {% for post in posts %}
+        <div>
+            {% if post.author.user_profile.profile_pic %}
+                <img src="/media/{{ post.author.user_profile.profile_pic }}" width="40px" height="40px">
+            {% else %}
+                <img src="/media/default.png" width="40px" height="40px">
+            {% endif %}
+            <a href="{% url 'Login_App:user' username=post.author %}">{{ post.author }}</a> <br>
+            {{ post.question }} <br>
+            
+            <!-- Display answers -->
+            <ul>
+                {% for answer in post.comments.all %}
+                    <li>
+                        {% if answer.author.user_profile.profile_pic %}
+                            <img src="/media/{{ answer.author.user_profile.profile_pic }}" width="40px" height="40px">
+                        {% else %}
+                            <img src="/media/default.png" width="40px" height="40px">
+                        {% endif %}
+                        <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content }}
+                        <br>
+                        Answered at: {{ answer.created_at }}
+                        <br>
+                        Likes: {{ answer.likes.count }}
+                        
+                        <!-- Like button with Font Awesome icons -->
+                        <form method="POST" action="{% url 'App_Post:like_answer' answer.id %}">
+                            {% csrf_token %}
+                            {% if request.user in answer.likes.all %}
+                                <button type="submit" class="like-button liked">
+                                    <i class="fa-solid fa-thumbs-up fa-beat fa-sm"></i>
+                                </button>
+                            {% else %}
+                                <button type="submit" class="like-button">
+                                    <i class="fa-thin fa-thumbs-up fa-beat fa-sm"></i>
+                                </button>
+                            {% endif %}
+                        </form>
+                    </li>
+                {% empty %}
+                    <li>Not Answered yet.</li>
+                {% endfor %}
+            </ul>
+            
+            <!-- Add Answer form -->
+            <form method="POST" action="{% url 'App_Post:add_ans' post.id %}">
+                {% csrf_token %}
+                <textarea name="content" placeholder="Your Answer"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+            
+            <hr>
+        </div>
+    {% endfor %}
+{% endblock %}
