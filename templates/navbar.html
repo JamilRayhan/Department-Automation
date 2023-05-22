@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>{% block title_block %}Social Site{% endblock %}</title>
   <meta charset="utf-8">
@@ -10,80 +11,83 @@
   {% block css_block %}
   {% endblock %}
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'App_Post:home' %}">Logo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'App_Post:home' %}"><img src="../media/default.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ">
 
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <form method="get" action="{% url 'App_Post:home' %}">
-          <div class="input-group mb-3">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <form method="get" action="{% url 'App_Post:home' %}">
+            <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Search for User" name="search">
               <button class="btn btn-primary" type="submit">Search</button>
-          </div>
-      </form>
+            </div>
+          </form>
 
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'App_Post:home' %}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'App_Post:questions' %}">Question</a>
-        </li>
-        {% if request.user.is_superuser %}
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'adminpanel:create_teacher' %}">Create Teacher</a>
-        </li>
-        {% endif %}
-        {% if not request.user.is_staff %}
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'exam_registration' %}">Register for Exam</a>
+            <a class="nav-link" href="{% url 'App_Post:home' %}">Home</a>
           </li>
-        {% endif %}
-
-
-        <li class="nav-item dropdown">
-          {% if user.user_profile.profile_pic %}
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            <img src="/media/{{user.user_profile.profile_pic}}" width= '40px' height="40px" class="rounded-circle">
-          </a>
-          {% else %}
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-            <img src="/media/default.png" width= '40px' height="40px" class="rounded-circle">
-          </a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'App_Post:questions' %}">Question</a>
+          </li>
+          {% if request.user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'adminpanel:create_teacher' %}">Create Teacher</a>
+          </li>
           {% endif %}
-          <ul class="dropdown-menu">
-            <li>
-              {% if user.user_profile.profile_pic %}
-              <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img src="/media/{{user.user_profile.profile_pic}}" width= '40px' height="40px" class="rounded-circle"> {{user.username}}</a>
-              {% else %}
-              <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img src="/media/default.png" width= '40px' height="40px" class="rounded-circle"> {{user.username}}</a>
-              {% endif %}
-            </li>
-            <li><a class="dropdown-item" href="{% url 'Login_App:student_list' %}">Student List</a></li>
-            {% if user.is_superuser %}
-            <li><a class="dropdown-item" href="{% url 'adminpanel:add_student' %}">Add Student</a></li>
+          {% if not request.user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'exam_registration' %}">Register for Exam</a>
+          </li>
+          {% endif %}
+
+
+          <li class="nav-item dropdown">
+            {% if user.user_profile.profile_pic %}
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <img src="/media/{{user.user_profile.profile_pic}}" width='40px' height="40px" class="rounded-circle">
+            </a>
+            {% else %}
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <img src="/media/default.png" width='40px' height="40px" class="rounded-circle">
+            </a>
             {% endif %}
-            <li><a class="dropdown-item" href="{% url 'Login_App:logout' %}">Logout</a></li>
-          </ul>
-        </li>
-        
-      </ul>
+            <ul class="dropdown-menu">
+              <li>
+                {% if user.user_profile.profile_pic %}
+                <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img
+                    src="/media/{{user.user_profile.profile_pic}}" width='40px' height="40px" class="rounded-circle">
+                  {{user.username}}</a>
+                {% else %}
+                <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img src="/media/default.png" width='40px'
+                    height="40px" class="rounded-circle"> {{user.username}}</a>
+                {% endif %}
+              </li>
+              <li><a class="dropdown-item" href="{% url 'Login_App:student_list' %}">Student List</a></li>
+              {% if user.is_superuser %}
+              <li><a class="dropdown-item" href="{% url 'adminpanel:add_student' %}">Add Student</a></li>
+              {% endif %}
+              <li><a class="dropdown-item" href="{% url 'Login_App:logout' %}">Logout</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
     </div>
+  </nav>
+  <br>
+  <div class="container">
+    {% block body_block %}
+
+    {% endblock %}
   </div>
-</nav>
-<br>
-<div class="container">
-{% block body_block %}
-
-{% endblock %}
-</div>
 </body>
+
 </html>
-
-
