@@ -1,0 +1,21 @@
+{% extends 'navbar.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}{{title}}{% endblock  %}
+
+{% block css_block %}
+
+{% endblock  %}
+
+{% block body_block %}
+<h1>Add Student</h1>
+  <form method="post" action="{% url 'adminpanel:add_student' %}">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+      {% for form in formset %}
+        {{ form }}
+      {% endfor %}
+    </table>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+{% endblock %}

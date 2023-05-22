@@ -103,3 +103,14 @@ class EditProfile(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user',)
+
+
+class StudentForm(forms.Form):
+    student_id = forms.CharField(label='Student ID')
+    name = forms.CharField(label='Name')
+    date_of_birth = forms.DateField(
+        label='Date of Birth', widget=forms.DateInput(attrs={'type': 'date'}))
+    session = forms.CharField(label='Session')
+    hall = forms.CharField(label='Hall')
+    blood_group = forms.CharField(label='Blood Group')
+    permanent_address = forms.CharField(label='Permanent Address')

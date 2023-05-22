@@ -1,0 +1,21 @@
+{% extends 'navbar.html' %}
+
+{% block title_block %}Student List{% endblock %}
+
+{% block body_block %}
+    <h1>Student List</h1>
+    <ul>
+        {% for student in students %}
+        <li>
+            <h5>Name: {{ student.name }}</h5>
+            <p>Student Id: {{ student.student_id }}</p>
+            <p>Session: {{ student.session }}</p>
+            <p>Hall: {{ student.hall }}</p>
+            <p>Blood Group: {{ student.blood_group }}</p>
+            <p>Permanent Address: {{ student.permanent_address }}</p>
+        </li>
+        {% empty %}
+            <li>No students found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
