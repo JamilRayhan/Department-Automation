@@ -23,8 +23,10 @@ class CreateNewUser(UserCreationForm):
     # custom fields
     student_id = forms.CharField(required=True, label="", widget=forms.TextInput(
         attrs={'placeholder': 'Student ID'}))
-    date_of_birth = forms.DateField(required=True, label="Date Of Birth", widget=forms.DateInput(
-        attrs={'placeholder': 'Date of Birth', 'type': 'date'}))
+    
+    date_of_birth = forms.DateField(required=True, label="", widget=forms.DateInput(
+        attrs={'placeholder': 'Date of Birth','class':'textbox-n', 'type': 'text','onfocus':"(this.type='date')"}))
+    
     hall_name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Hall Name'}))
     exam_name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
