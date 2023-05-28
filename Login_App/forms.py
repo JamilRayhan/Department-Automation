@@ -61,27 +61,6 @@ class CreateNewUser(UserCreationForm):
                 "This student ID is already registered.")
         return student_id
 
-    def save(self, commit=True):
-        user = super().save(commit=commit)
-        if commit:
-            user_profile = UserProfile.objects.create(user=user)
-            user_profile.full_name = self.cleaned_data.get('name')
-            user_profile.student_id = self.cleaned_data.get('student_id')
-            user_profile.dob = self.cleaned_data.get('date_of_birth')
-            user_profile.hall_name = self.cleaned_data.get('hall_name')
-            user_profile.exam_name = self.cleaned_data.get('exam_name')
-            user_profile.department_name = self.cleaned_data.get(
-                'department_name')
-            user_profile.academic_year = self.cleaned_data.get('academic_year')
-            user_profile.father_name = self.cleaned_data.get('father_name')
-            user_profile.mother_name = self.cleaned_data.get('mother_name')
-            user_profile.permanent_address = self.cleaned_data.get(
-                'permanent_address')
-            user_profile.nationality = self.cleaned_data.get('nationality')
-            user_profile.save()
-        return user
-
-
 class AuthForm(AuthenticationForm):
     username = forms.CharField(
         required=True,

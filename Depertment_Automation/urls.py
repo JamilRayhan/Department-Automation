@@ -7,7 +7,7 @@ from App_Post import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('admin/', admin.site.urls),
-    path('account/', include('Login_App.urls')),
+    path('accounts/', include('Login_App.urls')),
     path('post/', include('App_Post.urls')),
     path('adminpanel/', include('adminpanel.urls')),
     path('exam-registration/', include('exam_registration.urls')),
