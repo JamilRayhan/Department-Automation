@@ -1,38 +1,82 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title_block %}{{title}}{% endblock  %}
+{% block title_block %}{{title}}{% endblock %}
 
 {% block css_block %}
 <style>
-    .sign_up{
+    body {
+        padding: 0;
+        margin-top: -25px;
+        background-image: url(../../media/bg_login.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .sign_up {
         width: 400px;
-        
         padding: 20px;
     }
-    .text{
+
+    .text {
+        margin-top: 20px;
+        font-size: 25px;
         padding-bottom: 20px;
+        color: black;
+        font-family: sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     }
-    .log_in{
+
+    .log_in {
         width: 400px;
         padding: 20px;
-        border: 1px solid #ccc;
+        border: 0.5px solid #ccc;
         border-radius: 10px;
+        background-color: #bcbcbc7a;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .login_card {
+        margin-top: 15%;
+        position: relative;
+    }
+
+    .login_card img {
+        width: 120px;
+        border-radius: 50%;
+        position: absolute;
+        top: -90px;
+        left: 46.3%;
+        padding: 1px;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .btn_signup {
+        color: black;
+        margin-left: 5px;
     }
 </style>
-{% endblock  %}
+{% endblock %}
 
 {% block body_block %}
+
 <center>
-<div class="log_in">
-    <h4 class="text">Login to be a part of <br> BSMRSTU CSE</h4>
-<form method='POST'>
-    {{form|crispy}}
-    {% csrf_token %}
-    <button type="submit" style="width:100%" class="btn btn-primary btn-sm">Log In</button>
-</form>
-</div>
-<div class="sign_up">
-    <p>Don't have an account? <a href="{% url 'Login_App:signup' %}">Sign up</a></p>
-</div>
+    <div class="login_card">
+        <img src="../../media/logo_dept_of_CSE.jpg" alt="CSE DEPT LOGO">
+        <div class="log_in">
+            <h4 class="text">Login to be a part of <br> BSMRSTU CSE</h4>
+            <form method='POST'>
+                {{form|crispy}}
+                {% csrf_token %}
+                <button type="submit" style="width:100%" class="btn btn-primary btn-sm">Log In</button>
+            </form>
+        </div>
+        <div class="sign_up">
+            <p>Don't have an account? <a class="btn_signup" href="{% url 'Login_App:signup' %}">Sign
+                    up</a>
+            </p>
+        </div>
+    </div>
 </center>
-{% endblock  %}
+
+{% endblock %}

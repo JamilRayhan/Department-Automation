@@ -1,39 +1,50 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block title_block %}Create New Account{% endblock  %}
+{% block title_block %}Create New Account{% endblock %}
 
 {% block css_block %}
 <style>
-    .sign_up{
-        width: 400px;
+    body {
+        padding: 0;
+        margin-top: -25px;
+        background-image: url(../../media/bg_signup.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .sign_up {
+        margin-top: 20px;
+        width: 500px;
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 20px;
+        background-color: #4c789e6a;
     }
-    .text{
+
+    .text {
         padding-bottom: 20px;
     }
-    .log_in{
+
+    .log_in {
         width: 400px;
         padding: 20px;
     }
 </style>
-{% endblock  %}
+{% endblock %}
 
 {% block body_block %}
 
 <center>
-<div class="sign_up">
-    <h4 class="text">This site will helps you connect with the people of CSE family.</h4>
-<form method='POST'>
-    {{form|crispy}}
-    {% csrf_token %}
-    <button type="submit" style="width:100%" class="btn btn-primary btn-sm">Create Account</button>
-</form>
-</div>
-<div class="log_in">
-    <p>Have an account? <a href="{% url 'Login_App:login' %}">Login</a></p>
-</div>
+    <div class="sign_up">
+        <h4 class="text">This site will helps you connect with the people of CSE family.</h4>
+        <form method='POST'>
+            {{form|crispy}}
+            {% csrf_token %}
+            <button type="submit" style="width:100%" class="btn btn-primary btn-sm">Create Account</button>
+        </form>
+    </div>
+    <div class="log_in">
+        <p>Have an account? <a href="{% url 'Login_App:login' %}">Login</a></p>
+    </div>
 </center>
-{% endblock  %}
-
+{% endblock %}
