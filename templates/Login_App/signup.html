@@ -7,18 +7,20 @@
     body {
         padding: 0;
         margin-top: -25px;
-        background-image: url(../../media/bg_signup.png);
+        background-image: url(../../media/bg_login.jpg);
         background-repeat: no-repeat;
         background-size: cover;
+        background-attachment: fixed;
     }
 
     .sign_up {
         margin-top: 20px;
         width: 500px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
         padding: 20px;
-        background-color: #4c789e6a;
+        border: 0.5px solid #ccc;
+        border-radius: 10px;
+        background-color: #bcbcbc7a;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
     }
 
     .text {
@@ -28,6 +30,12 @@
     .log_in {
         width: 400px;
         padding: 20px;
+        margin-bottom: 2rem;
+    }
+
+    .signInBtn {
+        color: black;
+        margin-left: 5px;
     }
 </style>
 {% endblock %}
@@ -44,7 +52,7 @@
         </form>
     </div>
     <div class="log_in">
-        <p>Have an account? <a href="{% url 'Login_App:login' %}">Login</a></p>
+        <p>Have an account? <a class="signInBtn" href="{% url 'Login_App:login' %}">Login</a></p>
     </div>
 </center>
 {% endblock %}
