@@ -36,13 +36,12 @@
   #registration_form {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    background-color: #9f9e9e;
-    margin: 0 auto;
+
   }
 
-  input {
-    width: 30rem;
-    padding: 5px;
+  #registration_form {
+    background-color: #9f9e9e;
+    margin: 0 auto;
   }
 </style>
 {% endblock %}
@@ -54,7 +53,7 @@
   <div class="reg_form">
     <table id="registration_form">
       <tr>
-        <td><span>Name:</span></td>
+        <td><span>name:</span></td>
         <td><span>{{ reg_form.name }}</span></td>
       </tr>
       <tr>
@@ -70,47 +69,47 @@
         <td><span>{{ reg_form.semister }}</span></td>
       </tr>
       <tr>
-        <td><span>Hall Name:</span></td>
+        <td><span>hall_name:</span></td>
         <td><span>{{ reg_form.hall_name }}</span></td>
       </tr>
       <tr>
-        <td><span>Exam Name:</span></td>
+        <td><span>exam_name:</span></td>
         <td><span>{{ reg_form.exam_name }}</span></td>
       </tr>
       <tr>
-        <td><span>Department Name:</span></td>
+        <td><span>department_name:</span></td>
         <td><span>{{ reg_form.department_name }}</span></td>
       </tr>
       <tr>
-        <td><span>Academic Year:</span></td>
+        <td><span>academic_year:</span></td>
         <td><span>{{ reg_form.academic_year }}</span></td>
       </tr>
       <tr>
-        <td><span>Exam Hall:</span></td>
+        <td><span>exam_hall:</span></td>
         <td><span>{{ reg_form.exam_hall }}</span></td>
       </tr>
       <tr>
-        <td><span>Father Name:</span></td>
+        <td><span>father_name:</span></td>
         <td><span>{{ reg_form.father_name }}</span></td>
       </tr>
       <tr>
-        <td><span>Mother Name:</span></td>
+        <td><span>mother_name:</span></td>
         <td><span>{{ reg_form.mother_name }}</span></td>
       </tr>
       <tr>
-        <td><span>Present Address:</span></td>
+        <td><span>present_address:</span></td>
         <td><span>{{ reg_form.present_address }}</span></td>
       </tr>
       <tr>
-        <td><span>Permanent Address:</span></td>
+        <td><span>permanent_address:</span></td>
         <td><span>{{ reg_form.permanent_address }}</span></td>
       </tr>
       <tr>
-        <td><span>Nationality:</span></td>
+        <td><span>nationality:</span></td>
         <td><span>{{ reg_form.nationality }}</span></td>
       </tr>
       <tr>
-        <td><span>Date Of Birth:</span></td>
+        <td><span>date_of_birth:</span></td>
         <td><span>{{ reg_form.date_of_birth }}</span></td>
       </tr>
     </table>
