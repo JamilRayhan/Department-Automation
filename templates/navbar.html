@@ -12,33 +12,78 @@
   {% endblock %}
 
 </head>
-
+<style>
+  .input-group {
+    width: 300px;
+  }
+  
+  .form-control {
+    border-radius: 20px; 
+  }
+  
+  .btn-primary {
+    border-radius: 20px; 
+  }
+  .icon-container {
+    position: relative;
+    margin-top: 15px;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+  
+  .hover-text {
+    position: absolute;
+    bottom: -50px; /* Adjust the distance from the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .icon-container:hover .hover-text {
+    display: block;
+  }
+  
+  
+</style>
 
 <body>
 
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'App_Post:home' %}"><img
-          style="border-radius: 50%; height: 70px; margin-right: 3rem;" src="../media/logo_dept_of_CSE.jpg" alt=""></a>
+          style="border-radius: 50%; height: 55px;  margin-right: 1rem;" src="../../media/logo_dept_of_CSE.jpg" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav menubar">
 
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <form method="get" action="{% url 'App_Post:home' %}" style="margin-right: 20px;">
+          <form method="get" action="{% url 'App_Post:home' %}" style="margin-right: 20px;margin-top:15px;">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Search for User" name="search">
-              <button class="btn btn-primary" type="submit">Search</button>
+              <input type="text" class="form-control" placeholder="Search.." name="search">
+              <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
             </div>
           </form>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'App_Post:home' %}">Home</a>
+            <a class="nav-link" href="{% url 'App_Post:home' %}">
+              <div class="icon-container">
+                <i class="fa-solid fa-house fa-2xl" aria-hidden="true"></i>
+                <span class="hover-text">Home</span>
+              </div>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'App_Post:questions' %}">Question</a>
+            <a class="nav-link" href="{% url 'App_Post:questions' %}">
+              <div class="icon-container">
+                <i class="fa-solid fa-question fa-2xl" aria-hidden="true"></i>
+                <span class="hover-text">Question</span>
+              </div>
+            </a>
           </li>
           {% if request.user.is_superuser %}
           <li class="nav-item">
@@ -47,12 +92,19 @@
           {% endif %}
           {% if not request.user.is_staff %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'exam_registration' %}">Register for Exam</a>
+            <a class="nav-link" href="{% url 'exam_registration' %}">
+              <div class="icon-container">
+                <i class="fa-regular fa-id-card fa-2xl " aria-hidden="true"></i>
+                <span class="hover-text">Registration</span>
+              </div>
+              
+            </a>
           </li>
           {% endif %}
 
 
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown" style="margin-right: 20px;margin-top:9px;margin-left: 20px;">
+            
             {% if user.user_profile.profile_pic %}
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               <img src="/media/{{user.user_profile.profile_pic}}" width='40px' height="40px" class="rounded-circle">
