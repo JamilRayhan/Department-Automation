@@ -37,6 +37,10 @@
     .modal-content {
         background-color: #9b9a9a;
     }
+
+    .ans_section {
+        margin-left: 3rem;
+    }
 </style>
 {% endblock %}
 
@@ -81,7 +85,7 @@
                     <form method="POST" enctype="multipart/form-data">
                         {{ post.as_p }}
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-sm">Ask</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Post</button>
                     </form>
                 </div>
 
@@ -99,7 +103,7 @@
     </button>
 </div>
 <br>
-<div class="row">
+<div class="row ans_section">
     {% for post in user.post.all %}
     <div>
         <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img
@@ -111,7 +115,7 @@
         <p>{{ post.question }}</p>
         <h6>{{ post.upload_date }}</h6>
         <!-- Answer likes count -->
-        <ul>
+        <ul class="">
             {% for answer in post.comments.all %}
             <li>
                 <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content
