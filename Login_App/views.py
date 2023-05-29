@@ -105,34 +105,3 @@ def student_list(request):
     students = Student.objects.all()  
     students = Student.objects.order_by('student_id')
     return render(request, 'Login_App/student_list.html', {'students': students})
-
-
-    if request.method == 'POST':
-        # Get the form data
-        student_id = request.POST['student_id']
-        name = request.POST['name']
-        date_of_birth = request.POST['date_of_birth']
-        session = request.POST['session']
-        hall = request.POST['hall']
-        blood_group = request.POST['blood_group']
-        permanent_address = request.POST['permanent_address']
-        
-        # Create a new student object
-        student = Student(
-            student_id=student_id,
-            name=name,
-            date_of_birth=date_of_birth,
-            session=session,
-            hall=hall,
-            blood_group=blood_group,
-            permanent_address=permanent_address
-        )
-        
-        # Save the student object to the database
-        student.save()
-        
-        # Redirect to a success page or perform any other desired action
-        return redirect('success')
-    
-    # If the request method is GET, render the form template
-    return render(request, 'add_student.html')
