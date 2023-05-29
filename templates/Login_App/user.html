@@ -4,6 +4,10 @@
 
 {% block css_block %}
 <style>
+    body {
+        background-color: #bdbdbd;
+    }
+
     .crop {
         width: 400px;
         height: 400px;
@@ -19,30 +23,48 @@
         display: block;
         margin: auto;
     }
+
+    .main_div {
+        padding-top: 2rem;
+        padding-left: 2rem;
+    }
+
+    .question_btn {
+        display: flex;
+        justify-content: right;
+    }
+
+    .modal-content {
+        background-color: #9b9a9a;
+    }
 </style>
 {% endblock %}
 
 {% block body_block %}
-<div class="row">
+<div class="row main_div">
     <div class="col-sm-4">
         {% if user.user_profile.profile_pic %}
-        <a class="dropdown-item" href=""><img src="/media/{{user.user_profile.profile_pic}}" width='250px' height="250px" class="rounded-circle"></a>
+        <a class="dropdown-item" href=""><img src="/media/{{user.user_profile.profile_pic}}" width='250px'
+                height="250px" class="rounded-circle"></a>
         {% else %}
-        <a class="dropdown-item" href=""><img src="/media/default.png" width='250px' height="250px" class="rounded-circle"></a>
+        <a class="dropdown-item" href=""><img src="/media/default.png" width='250px' height="250px"
+                class="rounded-circle"></a>
         {% endif %}
 
     </div>
     <div class="col-sm-8">
-        <h3>{{ user.username }} &nbsp; <a href="{% url 'Login_App:edit' %}" class="btn btn-light btn-sm">Edit Profile</a></h3>
+        <h3>{{ user.username }} &nbsp; <a href="{% url 'Login_App:edit' %}" class="btn btn-light btn-sm">Edit
+                Profile</a></h3>
         <br>
-        <h4>{{ user.post.count }} Posts &nbsp; &nbsp; {{ user.following.count }} Followers &nbsp; &nbsp; {{ user.follower.count }} Following</h4>
+        <h4>{{ user.post.count }} Posts &nbsp; &nbsp; {{ user.following.count }} Followers &nbsp; &nbsp;
+            {{ user.follower.count }} Following</h4>
         <br>
         <h4>{{ user.user_profile.full_name }}</h4>
         <h6>{{ user.user_profile.description|linebreaks }}</h6>
     </div>
 </div>
 <hr>
-<div class="container mt-3">
+<div class="container mt-3 question_btn">
     <!-- The Modal -->
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -64,23 +86,25 @@
                 </div>
 
                 <!-- Modal footer -->
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+                </div> -->
 
             </div>
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-        Your Question
+    <button type="button" class="btn btn-primary question_btn" data-bs-toggle="modal" data-bs-target="#myModal">
+        My Question
     </button>
 </div>
 <br>
 <div class="row">
     {% for post in user.post.all %}
     <div>
-        <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img src="/media/{{ user.user_profile.profile_pic }}" width='40px' height="40px" class="rounded-circle">{{ user.username }}</a>
+        <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img
+                src="/media/{{ user.user_profile.profile_pic }}" width='40px' height="40px"
+                class="rounded-circle">{{user.username }}</a>
         <br>
     </div>
     <div class="crop">
@@ -88,21 +112,22 @@
         <h6>{{ post.upload_date }}</h6>
         <!-- Answer likes count -->
         <ul>
-          {% for answer in post.comments.all %}
-              <li>
-                  <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content }}
-                  <br>
-                  Answered at: {{ answer.created_at }}
-                  <br>
-                  <form method="POST" action="{% url 'App_Post:like_answer' answer.id %}">
-                      {% csrf_token %}
-                      Likes: {{ answer.likes.count }}
-                  </form>
-              </li>
-          {% empty %}
-              <li>Not Answered yet.</li>
-          {% endfor %}
-      </ul>
+            {% for answer in post.comments.all %}
+            <li>
+                <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content
+                }}
+                <br>
+                Answered at: {{ answer.created_at }}
+                <br>
+                <form method="POST" action="{% url 'App_Post:like_answer' answer.id %}">
+                    {% csrf_token %}
+                    Likes: {{ answer.likes.count }}
+                </form>
+            </li>
+            {% empty %}
+            <li>Not Answered yet.</li>
+            {% endfor %}
+        </ul>
     </div>
     <br>
     {% endfor %}
