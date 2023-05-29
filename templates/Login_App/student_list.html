@@ -2,20 +2,61 @@
 
 {% block title_block %}Student List{% endblock %}
 
+{% block css_block %}
+<style>
+  .student-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .student-item {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .student-name {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+  }
+
+  .student-info {
+    margin: 10px 0;
+    color: #666;
+  }
+  .title {
+    margin: 20px 0;
+    color: #1c0000;
+  }
+  .no-students {
+    text-align: center;
+    font-size: 20px;
+    color: #999;
+  }
+</style>
+{% endblock %}
+
 {% block body_block %}
-    <h1>Student List</h1>
-    <ul>
-        {% for student in students %}
-        <li>
-            <h5>Name: {{ student.name }}</h5>
-            <p>Student Id: {{ student.student_id }}</p>
-            <p>Session: {{ student.session }}</p>
-            <p>Hall: {{ student.hall }}</p>
-            <p>Blood Group: {{ student.blood_group }}</p>
-            <p>Permanent Address: {{ student.permanent_address }}</p>
+    <center>
+  <h1 class="title">Student List</h1>
+  {% if students %}
+    <ul class="student-list">
+      {% for student in students %}
+        <li class="student-item">
+          <h5 class="student-name">Name: {{ student.name }}</h5>
+          <p class="student-info">Student ID: {{ student.student_id }}</p>
+          <p class="student-info">Session: {{ student.session }}</p>
+          <p class="student-info">Hall: {{ student.hall }}</p>
+          <p class="student-info">Blood Group: {{ student.blood_group }}</p>
+          <p class="student-info">Permanent Address: {{ student.permanent_address }}</p>
         </li>
-        {% empty %}
-            <li>No students found.</li>
-        {% endfor %}
+      {% endfor %}
     </ul>
+  {% else %}
+    <p class="no-students">No students found.</p>
+  {% endif %}
+</center>
 {% endblock %}
