@@ -9,8 +9,10 @@ from django.utils.crypto import get_random_string
 
 
 class CreateNewUser(UserCreationForm):
-    name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
-        attrs={'placeholder': 'Full Name'}))
+    first_name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
+        attrs={'placeholder': 'Last Name'}))
     email = forms.EmailField(required=True, label="", widget=forms.TextInput(
         attrs={'placeholder': 'Email'}))
     username = forms.CharField(required=True, label="", widget=forms.TextInput(
@@ -46,7 +48,7 @@ class CreateNewUser(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('name', 'email', 'username', 'password1', 'password2', 'student_id', 'date_of_birth', 'hall_name',
+        fields = ('first_name','last_name', 'email', 'username', 'password1', 'password2', 'student_id', 'date_of_birth', 'hall_name',
                   'exam_name', 'department_name', 'academic_year', 'father_name', 'mother_name', 'permanent_address', 'nationality')
 
     def clean_email(self):
