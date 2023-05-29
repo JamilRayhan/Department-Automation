@@ -11,12 +11,9 @@ from App_Post.models import Posts, Answer, Like
 @login_required
 def home(request):
     user = request.user
-    search = request.GET.get('search', '')
-    result = []
-
-    if search.strip() != '':
+    if request.method == 'GET':
+        search = request.GET.get('search',  ' ')
         result = User.objects.filter(username__icontains=search)
-
     return render(request, 'App_Post/home.html', context={'title': 'Home', 'search': search, 'result': result, 'user': user})
 
 
