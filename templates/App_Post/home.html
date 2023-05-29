@@ -1,25 +1,150 @@
 {% extends 'navbar.html' %}
 {% load crispy_forms_tags %}
-{% block title_block %}{{title}}{% endblock  %}
+{% block title_block %}{{title}}{% endblock %}
 
 {% block css_block %}
+<style>
+    .banner_image {
+        color: blanchedalmond;
+        background-image: url(../media/home_banner.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        height: 38rem;
+        margin-bottom: -25px;
+        padding-bottom: 0px;
+    }
 
-{% endblock  %}
+    .text {
+        background-color: #474e5691;
+        text-align: center;
+        padding: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: cursive;
+    }
+
+    .our_achievement {
+        background-color: #4c535a;
+    }
+
+    .our_achievement h1 {
+        text-align: center;
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+    }
+
+    .card {
+        width: 300px;
+        background-color: #f2f2f2;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .card h3 {
+        color: #333;
+    }
+
+    .card p {
+        color: #777;
+    }
+
+    .line {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding-bottom: 3rem;
+    }
+
+    .banner_section {
+        margin: 0px !important;
+        padding: 0px;
+    }
+</style>
+{% endblock %}
 
 {% block body_block %}
-    {% for user in result  %}
-        <div class="row">
-            <div class="col-sm-1">
-                {% if user.user_profile.profile_pic %}
-                <img src="/media/{{user.user_profile.profile_pic}}" width= '50px' height="50px">
-                {% else %}
-                <img src="/media/default.png" width= '50px' height="50px">
-                {% endif %}
+{% for user in result %}
+<div class="row">
+    <div class="col-sm-1">
+        {% if user.user_profile.profile_pic %}
+        <img src="/media/{{user.user_profile.profile_pic}}" width='50px' height="50px">
+        {% else %}
+        <img src="/media/default.png" width='50px' height="50px">
+        {% endif %}
+    </div>
+    <div class="col-sm-11">
+        @<a href="{% url 'Login_App:user' username=user.username%}">{{user.username}} </a><br>
+        {{user.user_profile.full_name}}
+    </div>
+</div>
+
+{% endfor %}
+
+<div class="banner_section">
+    <div class="banner_image">
+        <!-- <img style="width: 100%; height: 38rem;" src="../media/home_banner.jpg" alt=""> -->
+        <div class="text">
+            <h2>"Individually, we are one drop. Together, we are an ocean of possibilities."</h2>
+        </div>
+    </div>
+</div>
+<br>
+<section>
+    <div class="our_achievement">
+        <h1>Our Achievements</h1>
+        <div class="line">
+            <div class="card">
+                <img src="../media/image/1.png" alt="Department Image">
+                <h3>Champion, System Development Section</h3>
+                <p><span>International Contest on Programming &amp; System
+                        Development (ICPSD) - 2014</span></p>
             </div>
-            <div class="col-sm-11"> 
-                @<a href="{% url 'Login_App:user' username=user.username%}">{{user.username}} </a><br>
-                {{user.user_profile.full_name}}
+            <div class="card">
+                <img src="../media/image/2.jpg" alt="Department Image">
+                <h3>Champion, Programming Contest</h3>
+                <p>ICT CARNIVAL 2019 | University of Global Village (UGV)</p>
+            </div>
+            <div class="card">
+                <img src="../media/image/3.jpg" alt="Department Image">
+                <h3>Participant (Project Showcasing)</h3>
+                <p>SUST IT Carnival 2015, Shahjalal University of Science & Technology</p>
+            </div>
+            <div class="card">
+                <img src="../media/image/7.jpg" alt="Department Image">
+                <h3>Top 10 Short Films Honored</h3>
+                <p>BLAST Short Film Festival 2016</p>
             </div>
         </div>
-    {% endfor %}
-{% endblock %}
+
+        <div class="line">
+            <div class="card">
+                <img src="../media/image/4.jpg" alt="Department Image">
+                <h3>Runner Up</h3>
+                <p><span>NASA Space Apps Challenge 2019</span></p>
+            </div>
+            <div class="card">
+                <img src="../media/image/5.jpg" alt="Department Image">
+                <h3>Champion position there</h3>
+                <p>Student to StartUp chapter 1. The priliminary selection was in jessore university of science and
+                    technology.</p>
+            </div>
+            <div class="card">
+                <img src="../media/image/6.jpg" alt="Department Image">
+                <h3>Champion, Rajshahi Region</h3>
+                <p>NASA Space Apps Challenge 2016</p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
