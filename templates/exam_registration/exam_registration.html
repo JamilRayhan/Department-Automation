@@ -1,16 +1,45 @@
 {% extends 'navbar.html' %}
 {% load crispy_forms_tags %}
-{% block title_block %}{{title}}{% endblock  %}
+{% block title_block %}{{title}}{% endblock %}
 
 {% block css_block %}
+<style>
+  body {
+    text-align: center;
+    background-color: #9a9a9a;
+  }
 
-{% endblock  %}
+  .text {
+    background-color: #636e72;
+    color: black;
+    padding: 10px;
+  }
+
+  .reg_form {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .reg_btn {
+    background-color: #47728a;
+    border: 1px solid #636e72;
+    border-radius: 5px;
+  }
+</style>
+{% endblock %}
 
 {% block body_block %}
-<h1>Exam Registration</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ reg_form.as_p }}
-    <button type="submit">Register</button>
+<h1 class="text">Exam Registration</h1>
+<form method="post">
+  {% csrf_token %}
+  <div class="reg_form">
+    <p>name: {{ reg_form.name }}</p>
+    <p>Student ID: {{ reg_form.student_id }}</p>
+  </div>
+  <button id="reg_btn" class="reg_btn" type="submit">Register</button>
 </form>
+<script>
+  const element = document.getElementsByTagName('input');
+  element.style.marginRight = "50px";
+</script>
 {% endblock %}

@@ -16,24 +16,26 @@
   .input-group {
     width: 300px;
   }
-  
+
   .form-control {
-    border-radius: 20px; 
+    border-radius: 20px;
   }
-  
+
   .btn-primary {
-    border-radius: 20px; 
+    border-radius: 20px;
   }
+
   .icon-container {
     position: relative;
     margin-top: 15px;
     margin-right: 20px;
     margin-left: 20px;
   }
-  
+
   .hover-text {
     position: absolute;
-    bottom: -50px; /* Adjust the distance from the icon */
+    bottom: -50px;
+    /* Adjust the distance from the icon */
     left: 50%;
     transform: translateX(-50%);
     display: none;
@@ -42,12 +44,10 @@
     padding: 5px 10px;
     border-radius: 5px;
   }
-  
+
   .icon-container:hover .hover-text {
     display: block;
   }
-  
-  
 </style>
 
 <body>
@@ -55,7 +55,8 @@
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'App_Post:home' %}"><img
-          style="border-radius: 50%; height: 55px;  margin-right: 1rem;" src="../../media/logo_dept_of_CSE.jpg" alt=""></a>
+          style="border-radius: 50%; height: 55px;  margin-right: 1rem;" src="../../media/logo_dept_of_CSE.jpg"
+          alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -97,14 +98,14 @@
                 <i class="fa-regular fa-id-card fa-2xl " aria-hidden="true"></i>
                 <span class="hover-text">Registration</span>
               </div>
-              
+
             </a>
           </li>
           {% endif %}
 
 
           <li class="nav-item dropdown" style="margin-right: 20px;margin-top:9px;margin-left: 20px;">
-            
+
             {% if user.user_profile.profile_pic %}
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
               <img src="/media/{{user.user_profile.profile_pic}}" width='40px' height="40px" class="rounded-circle">
@@ -114,7 +115,7 @@
               <img src="/media/default.png" width='40px' height="40px" class="rounded-circle">
             </a>
             {% endif %}
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu user_profile">
               <li>
                 {% if user.user_profile.profile_pic %}
                 <a class="dropdown-item" href="{% url 'Login_App:profile' %}"><img
@@ -138,7 +139,7 @@
     </div>
   </nav>
   </section>
- 
+
   <div class="container-fluid">
     {% block body_block %}
 
@@ -206,7 +207,8 @@
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mt-3 h-50">
             <div class="d-flex justify-content-center">
               <a href="https://www.bsmrstu.edu.bd">
-                <img style="height: 80px;" src="../../media/bsmrstu_1.png" class="d-blcok rounded-circle img-fluid imeg">
+                <img style="height: 80px;" src="../../media/bsmrstu_1.png"
+                  class="d-blcok rounded-circle img-fluid imeg">
               </a>
             </div>
             <div class="text-center mt-3">
