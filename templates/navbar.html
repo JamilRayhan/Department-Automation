@@ -10,21 +10,89 @@
   <script src="https://kit.fontawesome.com/42f00ac4ca.js" crossorigin="anonymous"></script>
   {% block css_block %}
   {% endblock %}
+
+
+  <style>
+    .banner_image {
+      color: blanchedalmond;
+      background-image: url(../media/home_banner.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      height: 38rem;
+      margin-bottom: -25px;
+      padding-bottom: 0px;
+    }
+
+    .text {
+      background-color: #474e5691;
+      text-align: center;
+      padding: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: cursive;
+    }
+
+    .our_achievement {
+      background-color: #4c535a;
+    }
+
+    .our_achievement h1 {
+      text-align: center;
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .card {
+      width: 300px;
+      background-color: #f2f2f2;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #333;
+    }
+
+    .card p {
+      color: #777;
+    }
+
+    .line {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      padding-bottom: 3rem;
+    }
+  </style>
 </head>
+
 
 <body>
 
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'App_Post:home' %}"><img src="../media/default.png" alt=""></a>
+      <a class="navbar-brand" href="{% url 'App_Post:home' %}"><img
+          style="border-radius: 50%; height: 70px; margin-right: 3rem;" src="../media/logo_dept_of_CSE.jpg" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav ">
+        <ul class="navbar-nav menubar">
 
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <form method="get" action="{% url 'App_Post:home' %}">
+          <form method="get" action="{% url 'App_Post:home' %}" style="margin-right: 20px;">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Search for User" name="search">
               <button class="btn btn-primary" type="submit">Search</button>
@@ -82,7 +150,197 @@
       </div>
     </div>
   </nav>
+
+  <div class="banner_section">
+    <div class="banner_image">
+      <!-- <img style="width: 100%; height: 38rem;" src="../media/home_banner.jpg" alt=""> -->
+      <div class="text">
+        <h2>"Individually, we are one drop. Together, we are an ocean of possibilities."</h2>
+      </div>
+    </div>
+  </div>
   <br>
+  <section>
+    <div class="our_achievement">
+      <h1>Our Achievements</h1>
+      <div class="line">
+        <div class="card">
+          <img src="../media/image/1.png" alt="Department Image">
+          <h3>Champion, System Development Section</h3>
+          <p><span>International Contest on Programming &amp; System
+              Development (ICPSD) - 2014</span></p>
+        </div>
+        <div class="card">
+          <img src="../media/image/2.jpg" alt="Department Image">
+          <h3>Champion, Programming Contest</h3>
+          <p>ICT CARNIVAL 2019 | University of Global Village (UGV)</p>
+        </div>
+        <div class="card">
+          <img src="../media/image/3.jpg" alt="Department Image">
+          <h3>Participant (Project Showcasing)</h3>
+          <p>SUST IT Carnival 2015, Shahjalal University of Science & Technology</p>
+        </div>
+        <div class="card">
+          <img src="../media/image/7.jpg" alt="Department Image">
+          <h3>Top 10 Short Films Honored</h3>
+          <p>BLAST Short Film Festival 2016</p>
+        </div>
+      </div>
+
+      <div class="line">
+        <div class="card">
+          <img src="../media/image/4.jpg" alt="Department Image">
+          <h3>Runner Up</h3>
+          <p><span>NASA Space Apps Challenge 2019</span></p>
+        </div>
+        <div class="card">
+          <img src="../media/image/5.jpg" alt="Department Image">
+          <h3>Champion position there</h3>
+          <p>Student to StartUp chapter 1. The priliminary selection was in jessore university of science and
+            technology.</p>
+        </div>
+        <div class="card">
+          <img src="../media/image/6.jpg" alt="Department Image">
+          <h3>Champion, Rajshahi Region</h3>
+          <p>NASA Space Apps Challenge 2016</p>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+  <div class="footer_section">
+    <footer class="bg-dark text-white pt-5 pb-4 foot">
+
+      <div class="container text-center text-md-left">
+
+        <div class="row text-center text-md-left">
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 ">
+            <div class="d-flex justify-content-center">
+              <a href="https://www.bsmrstu.edu.bd/dev/dept/?id=cse">
+                <img style="height: 80px;" src="../media/logo_dept_of_CSE.jpg"
+                  class="dept-img d-blcok rounded-circle img-fluid mb-2" />
+              </a>
+            </div>
+
+            <div class="text-center mt-2">
+              <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Main Office</h5>
+              <p>
+                <span class="main_office_span"><i
+                    class="ml-3 fas fa-solid fa-phone mr-3 call-icon main_office_span_i"></i></span>
+                : +88(721) 750742-3,
+                751320
+              </p>
+              <p>
+                <span class="main_office_span"><i class="fas fa-envelope-open mt-1 mr-3"></i></span>cse@bsmrstu.edu.bd
+              </p>
+
+              <p>
+                Registrar, Bngabandhu Sheikh Mujibur Rahman Science & Technology University,
+                Gopalganj-8100, Dhaka, Bangladesh
+              </p>
+            </div>
+          </div>
+          <div class="text-center col-md-4 col-lg-4 col-xl-3 mx-auto important-link">
+            <div class="d-flex justify-content-center">
+              <a href="https://www.bsmrstu.edu.bd/dev/dept/?id=cse">
+                <img src="" class="dept-img d-blcok rounded-circle img-fluid mb-2">
+              </a>
+            </div>
+            <h5 class="text-uppercase mb-2 font-weight-bold text-warning">Important links</h5>
+            <br>
+            <div class="text-center">
+              <a href="#" class="text-white" style="text-decoration: none;"> Home</a>
+              <br>
+              <a href="#" class="text-white" style="text-decoration: none;">Vice-Chancellor</a>
+              <br>
+              <a href="#" class="text-white" style="text-decoration: none;">About Bsmrstu</a>
+              <br>
+              <a href="#" class="text-white" style="text-decoration: none;">Publications</a>
+              <br>
+              <a href="#" class="text-white" style="text-decoration: none;">Gallery</a>
+              <br>
+              <a href="#" class="text-white" style="text-decoration: none;">Teachers(CSE)</a>
+              <br>
+              <a href="#" class="text-white" style="text-decoration: none;">Officers &
+                Staff(CSE)</a>
+              <br>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mt-3 h-50">
+            <div class="d-flex justify-content-center">
+              <a href="https://www.bsmrstu.edu.bd">
+                <img style="height: 80px;" src="../media/bsmrstu_1.png" class="d-blcok rounded-circle img-fluid imeg">
+              </a>
+            </div>
+            <div class="text-center mt-3">
+              <h5 class="varsity-tag text-uppercase mb-4 font-weight-bold text-warning">
+                Bangabandhu
+                Sheikh Mujibur Rahman Science & Technology</h5>
+              <p class="text-align-center varsity-description">
+                Bangabandhu Sheikh Mujibur Rahman Science & technology(BSMRSTU) is the
+                prestigious
+                public Engineering University & center of excellence offers high quality
+                education
+                and research in the field of engineering and technology
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <hr class="mb-4">
+
+        <div class="row align-items-center">
+
+          <div class="col-md-7 col-lg-8">
+            <p> Copyright ©2023 All rights reserved by:
+              <a href="#" style="text-decoration: none;">
+                <strong class="text-warning">BSMRSTU CSE</strong>
+              </a>
+            </p>
+
+          </div>
+
+          <div class="col-md-5 col-lg-4">
+            <div class="text-center text-md-right">
+
+              <ul class="list-unstyled list-inline">
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i
+                      class="fab fa-facebook"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i
+                      class="fab fa-twitter"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i
+                      class="fab fa-google-plus"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i
+                      class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i
+                      class="fab fa-youtube"></i></a>
+                </li>
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </footer>
+  </div>
+
   <div class="container">
     {% block body_block %}
 
