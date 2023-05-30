@@ -3,14 +3,92 @@
 {% block title_block %}{{title}}{% endblock  %}
 
 {% block css_block %}
-
+<style>
+    body {
+        text-align: center;
+        background-color: #9a9a9a;
+      }
+    
+      .text {
+        background-color: #636e72;
+        color: black;
+        padding: 10px;
+      }
+      .reg_form {
+        display: block;
+        text-align: center;
+        padding-top: 3rem;
+        padding-bottom: 1rem;
+      }
+    
+      .reg_btn {
+        background-color: #47728a;
+        border: 1px solid #636e72;
+        border-radius: 5px;
+        margin-bottom: 2rem;
+      }
+    
+      #registration_form tr:nth-child(even) {
+        background-color: #afafaf;
+      }
+    
+      #registration_form {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+    
+      }
+    
+      #registration_form {
+        background-color: #9f9e9e;
+        margin: 0 auto;
+      }
+</style>
 {% endblock  %}
 
 {% block body_block %}
-<h2>Create new teacher account</h2>
+<h2 class="text">Create new teacher account</h2>
 <form method="POST">
     {% csrf_token %}
-    {{ teacher_form.as_p }}
-    <button type="submit" class="btn btn-primary">Create</button>
+    <div class="reg_form">
+        <table id="registration_form">
+          <tr>
+            <td><span>Username:</span></td>
+            <td><span>{{ teacher_form.username }}</span></td>
+          </tr>
+          <tr>
+            <td><span>First Name:</span></td>
+            <td><span>{{ teacher_form.first_name }}</span></td>
+          </tr>
+          <tr>
+            <td><span>Last Name:</span></td>
+            <td><span>{{ teacher_form.last_name }}</span></td>
+          </tr>
+          <tr>
+            <td><span>Email:</span></td>
+            <td><span>{{ teacher_form.email }}</span></td>
+          </tr>
+          <tr>
+            <td><span>Joining Date:</span></td>
+            <td><span>{{ teacher_form.join_date }}</span></td>
+          </tr>
+          <tr>
+            <td><span>Exparties:</span></td>
+            <td><span>{{ teacher_form.experties }}</span></td>
+          </tr>
+          <tr>
+            <td><span>New Password:</span></td>
+            <td><span>{{ teacher_form.password1 }}</span></td>
+          </tr>
+          <tr>
+            <td><span>Confirm Password:</span></td>
+            <td><span>{{ teacher_form.password2 }}</span></td>
+          </tr>
+        </table>
+    </div>
+    <button id="reg_btn" class="reg_btn" type="submit">Register</button>
 </form>
+<script>
+  const element = document.getElementsByTagName('input');
+  element.style.marginRight = "50px";
+</script>
 {% endblock %}

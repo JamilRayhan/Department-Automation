@@ -5,21 +5,21 @@ from django.contrib.auth.models import User
 
 class TeacherCreationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'First Name'}))
+        attrs={}))
     last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'Last Name'}))
+        attrs={}))
     email = forms.EmailField(required=True, label="", widget=forms.TextInput(
-        attrs={'placeholder': 'Email'}))
+        attrs={}))
     username = forms.CharField(required=True, label="", widget=forms.TextInput(
-        attrs={'placeholder': 'Username'}))
+        attrs={}))
     password1 = forms.CharField(required=True, label="", widget=forms.PasswordInput(
-        attrs={'placeholder': 'New Password'}))
+        attrs={}))
     password2 = forms.CharField(required=True, label="", widget=forms.PasswordInput(
-        attrs={'placeholder': 'Confirm Password'}))
+        attrs={}))
     experties = forms.CharField(max_length=100, required=True, widget=forms.TextInput(
-        attrs={'placeholder': 'Experties'}))
+        attrs={}))
     join_date = forms.DateField(required=True, label="", widget=forms.DateInput(
-        attrs={'placeholder': 'Date of Birth', 'type': 'date'}))
+        attrs={'class':'textbox-n', 'type': 'text','onfocus':"(this.type='date')"}))
 
     class Meta:
         model = User

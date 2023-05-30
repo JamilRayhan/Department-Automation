@@ -25,10 +25,10 @@ class CreateNewUser(UserCreationForm):
     # custom fields
     student_id = forms.CharField(required=True, label="", widget=forms.TextInput(
         attrs={'placeholder': 'Student ID'}))
-    
+
     date_of_birth = forms.DateField(required=True, label="", widget=forms.DateInput(
-        attrs={'placeholder': 'Date of Birth','class':'textbox-n', 'type': 'text','onfocus':"(this.type='date')"}))
-    
+        attrs={'placeholder': 'Date of Birth', 'class': 'textbox-n', 'type': 'text', 'onfocus': "(this.type='date')"}))
+
     hall_name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
         attrs={'placeholder': 'Hall Name'}))
     exam_name = forms.CharField(required=True, label="", max_length=100, widget=forms.TextInput(
@@ -48,7 +48,7 @@ class CreateNewUser(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name','last_name', 'email', 'username', 'password1', 'password2', 'student_id', 'date_of_birth', 'hall_name',
+        fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2', 'student_id', 'date_of_birth', 'hall_name',
                   'exam_name', 'department_name', 'academic_year', 'father_name', 'mother_name', 'permanent_address', 'nationality')
 
     def clean_email(self):
@@ -64,6 +64,7 @@ class CreateNewUser(UserCreationForm):
             raise forms.ValidationError(
                 "This student ID is already registered.")
         return student_id
+
 
 class AuthForm(AuthenticationForm):
     username = forms.CharField(
@@ -91,8 +92,8 @@ class EditProfile(forms.ModelForm):
 class StudentForm(forms.Form):
     student_id = forms.CharField(label='Student ID')
     name = forms.CharField(label='Name')
-    date_of_birth = forms.DateField(
-        label='Date of Birth', widget=forms.DateInput(attrs={'type': 'date'}))
+    date_of_birth = forms.DateField(required=True, label="", widget=forms.DateInput(
+        attrs={'placeholder': '', 'class': 'textbox-n', 'type': 'text', 'onfocus': "(this.type='date')"}))
     session = forms.CharField(label='Session')
     hall = forms.CharField(label='Hall')
     blood_group = forms.CharField(label='Blood Group')

@@ -118,8 +118,7 @@
         <ul class="">
             {% for answer in post.comments.all %}
             <li>
-                <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content
-                }}
+                <a href="{% url 'Login_App:user' username=answer.author %}">{{ answer.author }}</a>: {{ answer.content}}
                 <br>
                 Answered at: {{ answer.created_at }}
                 <br>

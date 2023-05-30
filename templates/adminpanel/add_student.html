@@ -3,19 +3,93 @@
 {% block title_block %}{{title}}{% endblock  %}
 
 {% block css_block %}
+<style>
+  body {
+    text-align: center;
+    background-color: #9a9a9a;
+  }
 
+  .text {
+    background-color: #636e72;
+    color: black;
+    padding: 10px;
+  }
+
+  .reg_form {
+    display: block;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+  }
+
+  .reg_btn {
+    background-color: #47728a;
+    border: 1px solid #636e72;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+  }
+
+  #registration_form tr:nth-child(even) {
+    background-color: #afafaf;
+  }
+
+  #registration_form {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+
+  }
+
+  #registration_form {
+    background-color: #9f9e9e;
+    margin: 0 auto;
+  }
+</style>
 {% endblock  %}
 
 {% block body_block %}
-<h1>Add Student</h1>
+<h1 class="text">Add Student</h1>
   <form method="post" action="{% url 'adminpanel:add_student' %}">
     {% csrf_token %}
     {{ formset.management_form }}
-    <table>
+    <div class="reg_form">
       {% for form in formset %}
-        {{ form }}
+      <table id="registration_form">
+        <tr>
+          <td><span>Student ID:</span></td>
+          <td><span>{{ form.student_id }}</span></td>
+        </tr>
+        <tr>
+          <td><span>Name:</span></td>
+          <td><span>{{ form.name }}</span></td>
+        </tr>
+        <tr>
+          <td><span>Date of Birth:</span></td>
+          <td><span>{{ form.date_of_birth }}</span></td>
+        </tr>
+        <tr>
+          <td><span>Session:</span></td>
+          <td><span>{{ form.session }}</span></td>
+        </tr>
+        <tr>
+          <td><span>Hall Name:</span></td>
+          <td><span>{{ form.hall }}</span></td>
+        </tr>
+        <tr>
+          <td><span>Blood Group:</span></td>
+          <td><span>{{ form.blood_group }}</span></td>
+        </tr>
+        <tr>
+          <td><span>Permanent Address:</span></td>
+          <td><span>{{ form.permanent_address }}</span></td>
+        </tr>
+      </table>
+    </div>
+      <button id="reg_btn" class="reg_btn" type="submit">Register</button>
       {% endfor %}
-    </table>
-    <button type="submit" class="btn btn-primary">Add</button>
-  </form>
+    
+    </form>
+    <script>
+      const element = document.getElementsByTagName('input');
+      element.style.marginRight = "50px";
+    </script>
 {% endblock %}

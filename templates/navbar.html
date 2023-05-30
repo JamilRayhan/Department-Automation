@@ -48,6 +48,50 @@
   .icon-container:hover .hover-text {
     display: block;
   }
+  #collapsibleNavbar{
+    justify-content: space-around;
+  }
+  .search-box {
+    position: relative;
+  }
+  
+  .search-box input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+  
+  .search-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .search-btn i {
+    font-size: 18px;
+  }
+  
+  /* Optional: Hover effect */
+  .search-box input[type="text"]:hover,
+  .search-box input[type="text"]:focus {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .search-btn:hover {
+    background-color: #555;
+  }
+  
+  
 </style>
 
 <body>
@@ -55,7 +99,7 @@
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'App_Post:home' %}"><img
-          style="border-radius: 50%; height: 55px;  margin-right: 1rem;" src="../../media/logo_dept_of_CSE.jpg"
+          style="border-radius: 50%; height: 55px; margin-left: 0;" src="/media/logo_dept_of_CSE.jpg"
           alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -63,9 +107,10 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav menubar">
 
-          <form method="get" action="{% url 'App_Post:home' %}" style="margin-right: 20px;margin-top:15px;">
+          <form method="get" action="{% url 'App_Post:home' %}" style="margin-left: -50px;margin-right: 20px;margin-top:15px;">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Search.." name="search">
+              <input type="text" class="form-control search-box" placeholder="Search.." name="search">
+              
             </div>
           </form>
           
@@ -88,7 +133,12 @@
           </li>
           {% if request.user.is_superuser %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'adminpanel:create_teacher' %}">Create Teacher</a>
+            <a class="nav-link" href="{% url 'adminpanel:create_teacher' %}">
+              <div class="icon-container">
+                <i class="fa-solid fa-plus fa-2xl" aria-hidden="true"></i>
+                <span class="hover-text">Create Teacher</span>
+              </div>
+            </a>
           </li>
           {% endif %}
           {% if not request.user.is_staff %}
@@ -154,7 +204,7 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 ">
             <div class="d-flex justify-content-center">
               <a href="https://www.bsmrstu.edu.bd/dev/dept/?id=cse">
-                <img style="height: 80px;" src="../../media/logo_dept_of_CSE.jpg"
+                <img style="height: 80px;" src="/media/logo_dept_of_CSE.jpg"
                   class="dept-img d-blcok rounded-circle img-fluid mb-2" />
               </a>
             </div>
@@ -207,7 +257,7 @@
           <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mt-3 h-50">
             <div class="d-flex justify-content-center">
               <a href="https://www.bsmrstu.edu.bd">
-                <img style="height: 80px;" src="../../media/bsmrstu_1.png"
+                <img style="height: 80px;" src="/media/bsmrstu_1.png"
                   class="d-blcok rounded-circle img-fluid imeg">
               </a>
             </div>
